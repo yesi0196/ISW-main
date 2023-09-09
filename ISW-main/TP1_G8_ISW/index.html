@@ -106,10 +106,12 @@
                             <label for="state">Localidad</label>
                             <select class="custom-select d-block w-100" id="state" required>
                   <option value="">Seleccione...</option>
-                  <option>Córdoba</option>
-                  <option>Jesus María</option>
-                  <option>Alta Gracia</option>
-                  <option>Carlos Paz</option>
+                  <option>Villa Carlos Paz</option>
+                  <option>Santa Rosa de Calamuchita</option>
+                  <option>Villa General Belgrano</option>
+                  <option>Cosquín</option>
+                  <option>Mina Clavero</option>
+                  <option>Nono</option>
                 </select>
                             <div class="invalid-feedback">
                                 Porfavor seleccione una localidad.
@@ -122,7 +124,13 @@
                             <div class="invalid-feedback">
                                 Ingrese un codigo postal.
                             </div>
+                        </div><br><br>
+                        <div class="referen">
+                            <label for="referencia">Referencia (opcional)</label>
+                            <textarea type="text" id="referencia" name="referencia" rows="1" cols="20" maxlength="200"></textarea>
+                            <div id="error-message" style="color: red;"></div>
                         </div>
+
                     </div>
                     <hr class="mb-4">
                     <div class="custom-control custom-checkbox">
@@ -155,8 +163,8 @@
                     <div class="row">
 
                         <div class="col-md-4 mb-3">
-                            <label for="efectivo">Efecivo con que abonará</label>
-                            <input type="text" class="form-control" id="efectivo" placeholder="" required min="1">
+                            <label for="efectivo">Efecivo con que abonará $ </label>
+                            <input type="text" class="form-control" id="efectivo" placeholder="" required maxlength="5">
                             <div id="mensajeErrorEfectivo" style="color: red;"></div>
                             <div class="invalid-feedback">
                                 Este campo es obligatorio
@@ -164,6 +172,17 @@
                         </div>
 
                     </div>
+                    <div class="row">
+                        <label for="custom-state">Cuota</label>
+                        <select class="custom-select" id="custom-state" required>
+                            <option value="">Seleccione...</option>
+                            <option>Ninguna</option>
+                            <option>1 cuota</option>
+                            <option>3 cuotas</option>
+                            <option>12 cuotas</option>
+                            <option>18 cuotas</option>
+                        </select>
+                    </div> <br><br>
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label for="cc-name">Nombre y Apellido</label>
@@ -334,10 +353,26 @@
             });
         }
         validarSoloNumeros("zip","mensajeErrorZip")
-        validarSoloNumeros("efectivo", "mensajeErrorEfectivo");
         validarSoloNumeros("cc-number", "mensajeErrorCc-number")
         validarSoloNumeros("cc-cvv","mensajeErrorCc-cvv");
     </script>
+
+    <script>
+        var efectivoInput = document.getElementById("efectivo");
+        var mensajeErrorEfectivo = document.getElementById("mensajeErrorEfectivo");
+
+        efectivoInput.addEventListener("input", function() {
+            var valorEfectivo = this.value.trim(); // Elimina espacios en blanco
+            var esNumero = /^[0-9]+$/.test(valorEfectivo); // Verifica si es un número
+
+            if (!esNumero || valorEfectivo < 0 || valorEfectivo > 50000) {
+                mensajeErrorEfectivo.textContent = "Ingrese un numero mayor a 0 y menor o igual a 50.000";
+            } else {
+                mensajeErrorEfectivo.textContent = "";
+            }
+        });
+    </script>
+
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
