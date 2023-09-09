@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./imagenes/logo.ico">
+    <title>Finalizar la compra</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/checkout/">
+
+    <!-- Bootstrap core CSS 
+    <link href="js/bootstrap.min.js" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="pedido.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <div class="container">
+        <div class="py-5 text-center">
+            <img class="mb-4 d-block mx-auto " src="./imagenes/delivereat.ico">
+            <h2>Finalizar la compra</h2>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 order-md-2 mb-4">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Tu Carrito</span>
+                    <span class="badge badge-secondary badge-pill">3</span>
+                </h4>
+                <ul class="list-group mb-3" id="carrito-lista">
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Aros de Cebolla</h6>
+                            <small class="text-muted">Aros de cebolla con aderezo de salsa barbacoa</small>
+                        </div>
+                        <span class="text-muted importe">$1200</span>
+                        <button class="btn btn-danger btn-xs eliminar">Eliminar</button>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">7Up Lima Limón</h6>
+                            <small class="text-muted">354 ml</small>
+                        </div>
+                        <span class="text-muted importe">$890</span>
+                        <button class="btn btn-danger btn-xs eliminar">Eliminar</button>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Sandwich Vegano</h6>
+                            <small class="text-muted">Sandwich de milanesa plant based con sabor a carne</small>
+                        </div>
+                        <span class="text-muted importe">$3700</span>
+                        <button class="btn btn-danger btn-xs eliminar">Eliminar</button>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between bg-light">
+                        <div class="text-success">
+                            <h6 class="my-0">Código de descuento</h6>
+                            <small>CODIGOEJEMPLO</small>
+                        </div>
+                        <small id="codigoDescuento">-$0</small>
+                        <!--- VER PORQUE NO TOMA EL CSS DE LOS BOTONES XS -->
+                    </li>
+
+
+                </ul>
+                <div class="total">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Total</span>
+                        <strong id="total">$5790</strong>
+                    </li>
+                </div>
+
+                <form class="card p-2">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Código">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-secondary">Añadir</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-8 order-md-1">
+                <h4 class="mb-3">Datos de Envio</h4>
+                <form class="needs-validation" novalidate>
+
+                    <div class="mb-3">
+                        <label for="address">Calle</label>
+                        <input type="text" class="form-control" id="address" placeholder="Avenida Colón 2509" required>
+                        <div class="invalid-feedback">
+                            Porfavor seleccione la dirección de envío.
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-5 mb-3">
+                            <label for="country">Provincia</label>
+                            <select class="custom-select d-block w-100" id="country" required>
+                                <option value="">Seleccione...</option>
+                                <option>Córdoba</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Porfavor seleccione una provincia válida.
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="state">Localidad</label>
+                            <select class="custom-select d-block w-100" id="state" required>
+                                <option value="">Seleccione...</option>
+                                <option>Córdoba Capital</option>
+                                <option>Jesus María</option>
+                                <option>Alta Gracia</option>
+                                <option>Carlos Paz</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Porfavor seleccione una localidad.
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="zip">CPA</label>
+                            <input type="text" class="form-control" id="zip" placeholder="" required min="1" maxlength="4">
+                            <div id="mensajeErrorZip" style="color: red;"></div>
+                            <div class="invalid-feedback">
+                                Ingrese un codigo postal.
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mb-4">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" name="opcion" class="custom-control-input" id="same-address">
+                        <label class="custom-control-label" for="same-address">La dirección de envío es mi
+                            dirección</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" name="opcion" class="custom-control-input" id="save-info">
+                        <label class="custom-control-label" for="save-info">Guardar datos de envío</label>
+                    </div>
+                    <hr class="mb-4">
+
+                    <h4 class="mb-3">Método de Pago</h4>
+
+                    <div class="d-block my-3">
+
+                        <div class="custom-control custom-radio">
+                            <input id="cash" name="paymentMethod" type="radio" class="custom-control-input" checked>
+                            <label class="custom-control-label" for="cash">Efectivo</label>
+                            <!-- donde diga paypal en el código cambiar por cash -->
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input id="credit" name="paymentMethod" type="radio" class="custom-control-input">
+                            <label class="custom-control-label" for="credit">Tarjeta de Debito/Crédito</label>
+                        </div>                     
+                        <!-- falta que se habilite la cantidad de efectivo o datos de tarjeta segun lo que se selecciono -->
+                    </div>
+
+                    <div class="row">
+
+                        <div id="payWithDiv" class="col-md-4 mb-3" style="display: block;">
+                            <label for="efectivo">Efecivo con que abonará</label>
+                            <input type="text" class="form-control" id="efectivo" placeholder="" required  min="1">
+                            <div id="mensajeErrorEfectivo" style="color: red;"></div>
+                            <div class="invalid-feedback">
+                                Este campo es obligatorio
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="paymentDetails" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="cc-name">Nombre y Apellido</label>
+                                <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                                <small class="text-muted">Como figura en la tarjeta</small>
+                                <div class="invalid-feedback">
+                                    Este campo es obligatorio
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 mb-3">
+                                <label for="cc-number">Número de tarjeta</label>
+                                <input type="text" class="form-control" id="cc-number" placeholder="" required min="1" maxlength="16">
+                                <div id="mensajeErrorCc-number" style="color: red;"></div>
+                                <div class="invalid-feedback">
+                                    Este campo es obligatorio
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="cc-expiration">Código de seguridad</label>
+                                <input type="text" class="form-control" id="cc-cvv" placeholder="" required min="1" maxlength="3">
+                                <div id="mensajeErrorCc-cvv" style="color: red;"></div>
+                                <div class="invalid-feedback">
+                                    Este campo es obligatorio
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="cc-expiration">Mes de vencimiento</label>
+                                <select class="custom-select d-block w-100" id="cc-expiration" required>
+                                    <option value="">Seleccione...</option>
+                                    <option>01</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                    <option>04</option>
+                                    <option>05</option>
+                                    <option>06</option>
+                                    <option>07</option>
+                                    <option>08</option>
+                                    <option>09</option>
+                                    <option>10</option>
+                                    <option>11</option>
+                                    <option>12</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Este campo es obligatorio
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="cc-expiration">Año de vencimiento</label>
+                                <select class="custom-select d-block w-100" id="cc-expiration" required>
+                                    <option value="">Seleccione...</option>
+                                    <!-- for (var i = 1; i <= 64; i++) {
+                                        var optionValue = i.toString().padStart(2, '0');  Agregamos ceros a la izquierda si es necesario
+                                        var optionText = optionValue;  El texto de la opción es igual al valor en este caso 
+                                        var option = new Option(optionText, optionValue);
+                                        document.getElementById("cc-expiration").appendChild(option);
+                                    } -->
+                                    <!--<?php for ($i = 1; $i <= 64; $i++) { ?>
+                                        <option value="<?php echo str_pad($i, 2, '0', STR_PAD_LEFT); ?>">
+                                            <?php echo str_pad($i, 2, '0', STR_PAD_LEFT); ?>
+                                        </option>
+                                    <?php } ?>} -->
+                                    <option>23</option>
+                                    <option>24</option>
+                                    <option>25</option>
+                                    <option>26</option>
+                                    <option>27</option>
+                                    <option>28</option>
+                                    <option>29</option>
+                                    <option>30</option>
+                                    <option>31</option>
+                                    <option>32</option>
+                                    <option>33</option>
+                                    <option>34</option>
+                                    <option>35</option>
+                                    <option>36</option>
+                                    <option>37</option>
+                                    <option>48</option>
+                                    <option>49</option>
+                                    <option>50</option>
+                                    <option>51</option>
+                                    <option>52</option>
+                                    <option>53</option>
+                                    <option>54</option>
+                                    <option>56</option>
+                                    <option>57</option>
+                                    <option>58</option>
+                                    <option>59</option>
+                                    <option>60</option>
+                                    <option>61</option>
+                                    <option>62</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Este campo es obligatorio
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <hr class="mb-4">
+                            <h4 class="mb-3">¿Cuándo deseas recibir tu pedido?</h4>
+
+                            <div class="d-block my-3">
+
+                                <div class="custom-control custom-radio">   
+                                    <input id="antesPosible" name="recepcionPedido" type="radio" checked
+                                        class="custom-control-input">
+                                    <label class="custom-control-label" for="antesPosible">Lo antes posible</label>
+                                </div>
+
+                                <div class="custom-control custom-radio">
+                                    <input id="programado" name="recepcionPedido" type="radio" class="custom-control-input">
+                                    <label class="custom-control-label" for="programado">Fecha programada</label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--                      --------------------             -->
+                    <div id="div-fecha-programada" style="display: none;">
+                        <div class="row">
+                            <div class='col-sm-6'>
+                                <div class="form-group">
+                                    <input type='datetime-local' class="form-control" id="fechaHora" name="fechaHora"
+                                        class="form-control" required />
+                                    <div class="invalid-feedback d-block" id="error-mensaje-fecha"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="mb-4">
+                    <button id="realizarPedido" class="btn btn-primary btn-lg btn-block" type="submit">Relaizar
+                        pedido</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2017-2018 DeliverEat!</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacidad</a></li>
+            <li class="list-inline-item"><a href="#">Términos y condiciones</a></li>
+            <li class="list-inline-item"><a href="#">Soporte</a></li>
+        </ul>
+    </footer>
+    </div>
+
+
+
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap core JavaScript
+    ==================================================  Placed at the end of the document so the pages load faster -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script>
+        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+    </script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+
+
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+    <!-- Bootstrap CSS y JS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Datetimepicker CSS y JS -->
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
+        rel="stylesheet">
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+
+    <script>
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function () {
+                'use strict';
+
+                window.addEventListener('load', function () {
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.getElementsByClassName('needs-validation');
+
+                    // Loop over them and prevent submission
+                    var validation = Array.prototype.filter.call(forms, function (form) {
+                        form.addEventListener('submit', function (event) {
+                            if (form.checkValidity() === false) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            form.classList.add('was-validated');
+                        }, false);
+                    });
+                }, false);
+            })();
+    </script>
+
+    <script>
+        function validarSoloNumeros(idCampo, idMensajeError) {
+            var campo = document.getElementById(idCampo);
+            var mensajeError = document.getElementById(idMensajeError);
+
+            campo.addEventListener("input", function () {
+                var valor = this.value;
+                if (!/^\d+$/.test(valor)) {
+                    mensajeError.textContent = "Ingrese solo números.";
+                    campo.setCustomValidity("Ingrese solo números.");
+                } else {
+                    mensajeError.textContent = "";
+                    campo.setCustomValidity("");
+                } 
+            });
+        }
+        validarSoloNumeros("zip","mensajeErrorZip")
+        validarSoloNumeros("efectivo", "mensajeErrorEfectivo")
+        validarSoloNumeros("cc-number", "mensajeErrorCc-number")
+        validarSoloNumeros("cc-cvv","mensajeErrorCc-cvv");
+    </script>
+
+    
+
+    <script>
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                checkboxes.forEach(cb => {
+                    if (cb !== this) {
+                        cb.checked = false;
+                    }
+                });
+            });
+        });
+    </script>
+
+
+    <script>
+        // Función para eliminar un elemento de la lista
+        function eliminarElemento(event) {
+            const listItem = event.target.closest('.list-group-item');
+            const importe = listItem.querySelector('.importe').textContent;
+            const total = document.getElementById('total');
+
+            // Eliminar el elemento de la lista
+            listItem.remove();
+
+            // Actualizar el total restando el importe eliminado
+            const importeNumerico = parseFloat(importe.replace('$', '').trim());
+            const totalNumerico = parseFloat(total.textContent.replace('$', ''));
+            total.textContent = '$' + (totalNumerico - importeNumerico).toFixed(2);
+        }
+
+        // Agregar eventos de clic a los botones de eliminar
+        const botonesEliminar = document.querySelectorAll('.eliminar');
+        botonesEliminar.forEach((boton) => {
+            boton.addEventListener('click', eliminarElemento);
+        });
+    </script>
+
+    <!-- inicialización del Datetimepicker que garantice que el DOM se haya cargado completamente -->
+    <script> // no lo uso
+        document.addEventListener('DOMContentLoaded', function () {
+            $('#datetimepicker1').datetimepicker();
+        });
+    </script>
+
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const formulario = document.querySelector('form');
+            const codigoDescuento = document.getElementById('codigoDescuento');
+            const total = document.getElementById('total');
+
+            formulario.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const codigoInput = formulario.querySelector('input[type="text"]');
+                const codigo = codigoInput.value.trim();
+
+                // Verifica si se ingresó un código de descuento
+                if (codigo !== '') {
+                    // Aplica el descuento
+                    const descuento = 500;
+                    codigoDescuento.textContent = `-$${descuento}`;
+                    total.textContent = `$${parseFloat(total.textContent.replace('$', '')) - descuento}`;
+                }
+
+                // Limpia el campo de entrada
+                codigoInput.value = '';
+            });
+        });
+    </script>
+
+    <!-- Mostrar y ocultar campo efectivo o tarjeta de credito/devito -->
+
+    <script>
+        // Obtener referencias a los elementos
+        const cashRadio = document.getElementById("cash");
+        const creditRadio = document.getElementById("credit");
+        const payWithDiv = document.getElementById("payWithDiv")
+        const paymentDetails = document.getElementById("paymentDetails")
+
+        // Agregar un manejador de eventos para la casilla de verificación
+        creditRadio.addEventListener("change", function () {
+            if (creditRadio.checked) {
+                payWithDiv.style.display = "none"; // Oculta el div pago con efectivo
+                paymentDetails.style.display = "block"; // Mostrar el div pago con tarjeta
+            }
+        });
+        cashRadio.addEventListener("change", function() {
+            if (cashRadio.checked) {
+                paymentDetails.style.display = "none"; // Oculta el div pago con tarjeta
+                payWithDiv.style.display = "block"; // Mostrar el div pago con efectivo
+            }
+        });
+    </script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const realizarPedidoBtn = document.getElementById('realizarPedido');
+            const carritoLista = document.getElementById('carrito-lista');
+            const mensajeError = document.createElement('div');
+            mensajeError.classList.add('alert', 'alert-danger', 'mt-3', 'd-none');
+            mensajeError.textContent = 'Agrega al menos un elemento al carrito antes de realizar el pedido.';
+            carritoLista.parentElement.appendChild(mensajeError);
+
+            realizarPedidoBtn.addEventListener('click', function (event) {
+                const elementosCarrito = carritoLista.querySelectorAll('li.list-group-item:not(.bg-light)');
+                if (elementosCarrito.length === 0) {
+                    // Mostrar el mensaje de error
+                    mensajeError.classList.remove('d-none');
+                    event.preventDefault(); // Evitar que el formulario se envíe si no hay elementos en el carrito
+                } else {
+                    // Ocultar el mensaje de error si hay elementos en el carrito
+                    mensajeError.classList.add('d-none');
+                }
+            });
+        });
+    </script>
+
+
+    <!-- Validar que la fecha no sea inferior a la atual -->
+
+    <script>
+        // Obtener el elemento datetime-local y el elemento div para el mensaje de error
+        const fechaHoraInput = document.getElementById("fechaHora");
+        const errorMensaje = document.getElementById("error-mensaje-fecha");
+        const tect_box_fecha = document.getElementById("");
+
+        // Agregar un evento de escucha al elemento datetime-local
+        fechaHoraInput.addEventListener("input", function () {
+            // Obtener la fecha y hora seleccionada por el usuario
+            const fechaHoraSeleccionada = new Date(fechaHoraInput.value);
+
+            // Obtener la fecha y hora actual
+            const fechaHoraActual = new Date();
+
+            // Comparar la fecha y hora seleccionada con la fecha y hora actual
+            if (fechaHoraSeleccionada < fechaHoraActual) {
+                // La fecha y hora seleccionadas son anteriores a la fecha y hora actual
+                errorMensaje.innerHTML = "La fecha y hora no pueden ser anteriores a la actual.";
+                fechaHoraInput.classList.add('is-invalid')
+            } else {
+                // Limpiar el mensaje de error si la fecha y hora son válidas
+                errorMensaje.innerHTML = "";
+                fechaHoraInput.classList.remove('is-invalid')
+            }
+        });
+    </script>
+
+
+    <!-- Mostrar y ocultar campo de entrega programada -->
+
+    <script>
+        // Obtener referencias a los elementos
+        const divFechaHora = document.getElementById("div-fecha-programada");
+        const cbProgramado = document.getElementById("programado");
+        const cbAntesPosible = document.getElementById("antesPosible");
+        // Agregar un manejador de eventos para la casilla de verificación
+        cbProgramado.addEventListener("change", function () {
+            if (cbProgramado.checked) {
+                fechaHoraInput.value=""
+                errorMensaje.innerHTML = "";
+                fechaHoraInput.classList.remove('is-invalid')
+                divFechaHora.style.display = "block"; // Mostrar el div si la casilla está marcada
+            }
+        });
+        cbAntesPosible.addEventListener("change", function() {
+            if (cbAntesPosible.checked) {
+                divFechaHora.style.display = "none"; // Oculta el div
+            }
+        });
+    </script>
+
+
+
+</body>
+
+</html>
